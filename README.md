@@ -8,6 +8,7 @@
 import video from "../videos/videourl.mp4";
 </code>
 <p>4. Baixe até a ultima lista de videos e crie uma section como as outras com um titulo e utilizando a tag customizada de <Video /> </p>
+
 ## Exemplo:
 <code>
 <section className="main-videos-row row1">
@@ -20,4 +21,5 @@ import video from "../videos/videourl.mp4";
                 </div>
             </section>
 </code>
+
 <p>5. Inclua o nome do import no atributo de url="" </p>
