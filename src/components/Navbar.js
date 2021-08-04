@@ -42,7 +42,7 @@ function Navbar() {
                         <a href="https://discord.gg/XpTWUy72Cq" target="_blank" rel="noreferrer">Discord</a>
                     </li>
                     <li>
-                        <a href="https://github.com/Code-s-Moon-Development/CodesMoonMemes">Repository</a>
+                        <a href="https://github.com/Code-s-Moon-Development/CodesMoonMemes" target="_blank" rel="noreferrer">Repository</a>
                     </li>
                 </NavUnlisted>
             </div>

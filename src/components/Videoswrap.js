@@ -50,11 +50,18 @@ import video45 from "../videos/aa10.mp4";
 import video46 from "../videos/aa11.mp4";
 import video47 from "../videos/aa12.mp4";
 import video48 from "../videos/aa13.mp4";
-import video49 from "../videos/aa13.mp4";
+import video49 from "../videos/ff32.mp4";
 import video50 from "../videos/aa14.mp4";
 import video51 from "../videos/AA.mp4";
 import video52 from "../videos/bonoro.mp4";
-import video53 from "../videos/cavalgada.mp4";
+import video53 from "../videos/aa15.mp4";
+import video54 from "../videos/aa16.mp4";
+import video55 from "../videos/aa17.mp4";
+import video56 from "../videos/aa18.mp4";
+import video57 from "../videos/aa19.mp4";
+import video58 from "../videos/aa20.mp4";
+import video59 from "../videos/aa21.mp4";
+import video60 from "../videos/aa22.mp4";
 
 function VidContainer() {
     
@@ -70,7 +77,7 @@ function VidContainer() {
                 </div>    
             </section>
             <section className="main-videos-row row1">
-                <h2>A topers das balada 🔥</h2>
+                <h2> A topers das balada 🔥</h2>
                 <div className="videos-row">
                     <Videos url={video5} />
                     <Videos url={video6} />
@@ -79,7 +86,7 @@ function VidContainer() {
                 </div>
             </section>
             <section className="main-videos-row row1">
-                <h2>Senta senta kika kika 😂</h2>
+                <h2>O vo pega minha marreta</h2>
                 <div className="videos-row">
                     <Videos url={video9} />
                     <Videos url={video10} />
@@ -178,9 +185,21 @@ function VidContainer() {
                 </div>
             </section>
             <section className="main-videos-row row1">
-                <h2> 4 braso 👍 </h2>
+                <h2> To bolado 😡 </h2>
                 <div className="videos-row">
                     <Videos url={video53} />
+                    <Videos url={video54} />
+                    <Videos url={video55} />
+                    <Videos url={video56} />
+                </div>
+            </section>
+            <section className="main-videos-row row1">
+                <h2> Alguém para esse cara pelo amor de deus </h2>
+                <div className="videos-row">
+                    <Videos url={video57} />
+                    <Videos url={video58} />
+                    <Videos url={video59} />
+                    <Videos url={video60} />
                 </div>
             </section>
         </div>
