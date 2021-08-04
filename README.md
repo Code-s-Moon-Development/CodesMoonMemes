@@ -1,8 +1,8 @@
 ## Code's Moon Memes
 ### Como adicionar mais memes
 
-<p>1. Crie uma pull request adicione o .mp4 do video desejado na pasta Videos (Src > Videos)</p>
-<p>2. Vá a pasta Components e Videoswrap.js</p>
+<p>1. Crie uma pull request adicione o .mp4 do video desejado na pasta Videos (src > videos)</p>
+<p>2. Vá a pasta Components e Videoswrap.js (src > components > Videoswrap.js ></p>
 <p>3. Importe o Video utilizando a mesma escritura de todos os outros imports</p>
 <code>
 import video from "../videos/videourl.mp4";
