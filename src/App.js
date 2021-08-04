@@ -16,7 +16,7 @@ function App() {
                     <VidContainer />
                     <Final />
                 </Route>
-                <Route path="/about" exact>
+                <Route path="/about">
                     <About />
                 </Route>
             </Switch>
