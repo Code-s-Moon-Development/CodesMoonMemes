@@ -62,7 +62,7 @@ import video57 from "../videos/aa19.mp4";
 import video58 from "../videos/aa20.mp4";
 import video59 from "../videos/aa21.mp4";
 import video60 from "../videos/aa22.mp4";
-
+import video61 from "../videos/abelhinhaUwU.mp4";
 function VidContainer() {
     
     return (
@@ -200,6 +200,12 @@ function VidContainer() {
                     <Videos url={video58} />
                     <Videos url={video59} />
                     <Videos url={video60} />
+                </div>
+            </section>
+            <section className="main-videos-row row1">
+                <h2> Insetos 🐢 </h2>
+                <div className="videos-row">
+                    <Videos url={video61} />                 
                 </div>
             </section>
         </div>
