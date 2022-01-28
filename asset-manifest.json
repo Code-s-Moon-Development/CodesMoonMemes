@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CodesMoonMemes/static/css/main.2ce783a2.chunk.css",
-    "main.js": "/CodesMoonMemes/static/js/main.c48b65b3.chunk.js",
-    "main.js.map": "/CodesMoonMemes/static/js/main.c48b65b3.chunk.js.map",
+    "main.js": "/CodesMoonMemes/static/js/main.070bc17a.chunk.js",
+    "main.js.map": "/CodesMoonMemes/static/js/main.070bc17a.chunk.js.map",
     "runtime-main.js": "/CodesMoonMemes/static/js/runtime-main.b8e81671.js",
     "runtime-main.js.map": "/CodesMoonMemes/static/js/runtime-main.b8e81671.js.map",
     "static/js/2.a7ce3839.chunk.js": "/CodesMoonMemes/static/js/2.a7ce3839.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.b8e81671.js",
     "static/js/2.a7ce3839.chunk.js",
     "static/css/main.2ce783a2.chunk.css",
-    "static/js/main.c48b65b3.chunk.js"
+    "static/js/main.070bc17a.chunk.js"
   ]
 }
