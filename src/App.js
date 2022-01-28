@@ -1,26 +1,35 @@
 // Dependencies
 import { Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
 // Components
-import VidContainer from "./components/Videoswrap";
-import About from "./components/About";
 import Navbar from "./components/Navbar";
-import Final from "./components/Final";
+import Upload from "./components/upload/Upload";
+import Feed from "./components/feed/Feed";
+import About from "./components/about/About";
+
+const MainWrap = styled.main`
+    padding: 0 2rem;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1950px;
+`;
 
 function App() {
     return (
-        <div className="allaround-wrapper">
+        <MainWrap>
             <Navbar />
             <Switch>
                 <Route path="/" exact>
-                    <VidContainer />
-                    <Final />
+                    <Upload />
+                    <Feed />
                 </Route>
                 <Route path="/about">
                     <About />
                 </Route>
             </Switch>
-        </div>
+        </MainWrap>
     );
 }
 
