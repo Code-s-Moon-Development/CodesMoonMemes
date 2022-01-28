@@ -60,6 +60,12 @@ function Upload() {
         setModalState(false);
     };
 
+    const clearFiles = () => {
+        input.current?.val("");
+        setTempFiles([]);
+        setFiles([]);
+    };
+
     const handleUpload = (e) => {
         e.preventDefault();
         if (tempFiles) {
@@ -73,7 +79,7 @@ function Upload() {
                     if (error) throw new Error(error);
                     closeModal();
                     setUploaded(true);
-                    setFiles([]);
+                    clearFiles();
                     setTimeout(() => {
                         setUploaded(false);
                     }, 5000);
