@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/CodesMoonMemes/static/css/main.6ce8509f.chunk.css",
-    "main.js": "/CodesMoonMemes/static/js/main.03e53a3e.chunk.js",
-    "main.js.map": "/CodesMoonMemes/static/js/main.03e53a3e.chunk.js.map",
+    "main.css": "/CodesMoonMemes/static/css/main.2ce783a2.chunk.css",
+    "main.js": "/CodesMoonMemes/static/js/main.c48b65b3.chunk.js",
+    "main.js.map": "/CodesMoonMemes/static/js/main.c48b65b3.chunk.js.map",
     "runtime-main.js": "/CodesMoonMemes/static/js/runtime-main.b8e81671.js",
     "runtime-main.js.map": "/CodesMoonMemes/static/js/runtime-main.b8e81671.js.map",
     "static/js/2.a7ce3839.chunk.js": "/CodesMoonMemes/static/js/2.a7ce3839.chunk.js",
     "static/js/2.a7ce3839.chunk.js.map": "/CodesMoonMemes/static/js/2.a7ce3839.chunk.js.map",
     "index.html": "/CodesMoonMemes/index.html",
-    "static/css/main.6ce8509f.chunk.css.map": "/CodesMoonMemes/static/css/main.6ce8509f.chunk.css.map",
+    "static/css/main.2ce783a2.chunk.css.map": "/CodesMoonMemes/static/css/main.2ce783a2.chunk.css.map",
     "static/js/2.a7ce3839.chunk.js.LICENSE.txt": "/CodesMoonMemes/static/js/2.a7ce3839.chunk.js.LICENSE.txt",
     "static/media/Close.0d2d4c2e.svg": "/CodesMoonMemes/static/media/Close.0d2d4c2e.svg",
     "static/media/Upload.fdbc3f06.svg": "/CodesMoonMemes/static/media/Upload.fdbc3f06.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.b8e81671.js",
     "static/js/2.a7ce3839.chunk.js",
-    "static/css/main.6ce8509f.chunk.css",
-    "static/js/main.03e53a3e.chunk.js"
+    "static/css/main.2ce783a2.chunk.css",
+    "static/js/main.c48b65b3.chunk.js"
   ]
 }
