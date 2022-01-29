@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/CodesMoonMemes/static/css/main.a96dfc57.css",
-    "main.js": "/CodesMoonMemes/static/js/main.0aa836b7.js",
+    "main.js": "/CodesMoonMemes/static/js/main.4465cb94.js",
     "static/media/drgif.gif": "/CodesMoonMemes/static/media/drgif.e9a69d686d9204bd11a4.gif",
     "index.html": "/CodesMoonMemes/index.html",
     "static/media/Upload.svg": "/CodesMoonMemes/static/media/Upload.fdbc3f067c92edb633d18859dbe124f7.svg",
     "static/media/Close.svg": "/CodesMoonMemes/static/media/Close.0d2d4c2eea931ea10a7a65168bfa9ba8.svg",
     "main.a96dfc57.css.map": "/CodesMoonMemes/static/css/main.a96dfc57.css.map",
-    "main.0aa836b7.js.map": "/CodesMoonMemes/static/js/main.0aa836b7.js.map"
+    "main.4465cb94.js.map": "/CodesMoonMemes/static/js/main.4465cb94.js.map"
   },
   "entrypoints": [
     "static/css/main.a96dfc57.css",
-    "static/js/main.0aa836b7.js"
+    "static/js/main.4465cb94.js"
   ]
 }
