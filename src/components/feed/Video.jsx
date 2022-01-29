@@ -1,5 +1,4 @@
 import { useRef, useEffect } from "react";
-import LazyLoad from "react-lazyload";
 import styled, { keyframes } from "styled-components";
 
 const placeholderBlink = keyframes`
@@ -15,15 +14,43 @@ const placeholderBlink = keyframes`
 `;
 
 const Placeholder = styled.div`
-    background: #222222;
+    margin: 0.2rem;
     width: 300px;
     height: 220px;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    background: #222222;
     animation: ${placeholderBlink} 2s ease-in-out infinite;
+`;
+
+const VideoWrapper = styled.div`
+    margin: 0.2rem;
+    width: 300px;
+    height: 220px;
+    overflow: hidden;
+    -webkit-transition: -webkit-transform 0.5s ease-in;
+    transition: -webkit-transform 0.5s ease-in;
+    -o-transition: -o-transform 0.5s ease-in;
+    -moz-transition: transform 0.5s ease-in, -moz-transform 0.5s ease-in;
+    transition: transform 0.5s ease-in;
+    transition: transform 0.5s ease-in, -webkit-transform 0.5s ease-in, -moz-transform 0.5s ease-in, -o-transform 0.5s ease-in;
 `;
 
 const VideoEl = styled.video`
     width: 300px;
     min-height: 100%;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    &:hover {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 function Video({ url }) {
@@ -35,9 +62,9 @@ function Video({ url }) {
     }, [videoPlayer]);
 
     return url ? (
-        <LazyLoad once>
+        <>
             {url.startsWith(process.env.REACT_APP_SUPABASE_URL) ? ( // to make sure url always comes from API
-                <div className="video-wrapper">
+                <VideoWrapper className="video-wrapper">
                     <div className="video-inner-wrapper">
                         <VideoEl
                             ref={videoPlayer}
@@ -54,15 +81,15 @@ function Video({ url }) {
                             <source src={url + "#t=0.5"} type="video/mp4" />
                         </VideoEl>
                     </div>
-                </div>
+                </VideoWrapper>
             ) : null}
-        </LazyLoad>
+        </>
     ) : (
-        <div className="video-wrapper">
+        <VideoWrapper className="video-wrapper">
             <div className="video-inner-wrapper">
                 <Placeholder />
             </div>
-        </div>
+        </VideoWrapper>
     );
 }
 

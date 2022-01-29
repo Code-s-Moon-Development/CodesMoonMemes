@@ -2,10 +2,10 @@ import { supabase } from "../../lib/supabaseClient";
 import { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 
-import useMedia from "../../hooks/useMedia";
 import VideoWrapper from "./VideoWrapper";
 import Spinner from "./Spinner";
 import Final from "./Final";
+// import useMedia from "../../hooks/useMedia";
 
 const OuterWrap = styled.div`
     width: 100%;
@@ -19,6 +19,7 @@ const InnerWrap = styled.div`
     width: fit-content;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
 `;
 
@@ -28,6 +29,8 @@ const TitleWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 0 2rem;
+    flex: 1;
+    width: 100%;
     gap: 2rem;
 `;
 
@@ -50,10 +53,10 @@ const FeedTitle = styled.h1`
     }
 `;
 
-const RefreshBtn = styled.button`
+const RefreshBtn = styled.div`
+    padding: 0.5rem;
     font-size: calc(0.7rem + 0.3vw);
-    padding: 0.7rem;
-    margin: 0 0.6rem 0.5rem 0;
+    margin: 0 0.6rem 0 0;
     background: rgba(0, 0, 0, 0.2);
     border: 0px transparent;
     outline: 0px transparent;
@@ -65,21 +68,23 @@ const RefreshBtn = styled.button`
     -webkit-backdrop-filter: blur(4px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 function Feed() {
     const [isLoading, setIsLoading] = useState(false);
-    const [fetchOptions, setFetchOptions] = useState({ limit: 15, offset: 0, sortBy: { column: "updated_at", order: "desc" } });
+    const [fetchOptions, setFetchOptions] = useState({ limit: 15, offset: 0, sortBy: { column: "created_at", order: "desc" } });
     const [endReached, setEndReached] = useState(false);
 
-    const [tempVideos, setTempVideos] = useState([]);
     const [videos, setVideos] = useState([]);
 
-    const videoAmount = useMedia(
-        ["(min-width: 2000px)", "(min-width: 1600px)", "(min-width: 1400px)", "(min-width: 968px)", "(min-width: 668px)", "(min-width: 0px)"],
-        [6, 5, 4, 3, 2, 1],
-        4
-    );
+    // const videoAmount = useMedia(
+    //     ["(min-width: 2000px)", "(min-width: 1600px)", "(min-width: 1400px)", "(min-width: 968px)", "(min-width: 668px)", "(min-width: 0px)"],
+    //     [6, 5, 4, 3, 2, 1],
+    //     4
+    // );
 
     const sanitizeVideos = (data) => {
         const tempData = [...new Set(data)]; // remove any possible duplicates
@@ -88,7 +93,7 @@ function Feed() {
             const { publicURL, error } = supabase.storage.from("cmemes").getPublicUrl(video.name);
             if (error) throw new Error(error);
 
-            setTempVideos((lastVideos) => [
+            setVideos((lastVideos) => [
                 ...lastVideos,
                 {
                     name: video.name,
@@ -106,8 +111,8 @@ function Feed() {
             const { data, error } = await supabase.storage.from("cmemes").list(undefined, options);
             if (error) throw new Error(error);
 
-            setFetchOptions((lastOptions) => ({ ...lastOptions, offset: lastOptions.offset + 15 }));
             sanitizeVideos(data);
+            setFetchOptions((lastOptions) => ({ ...lastOptions, offset: lastOptions.offset + 15 }));
 
             setIsLoading(false);
             if (data.length === 0) {
@@ -116,48 +121,30 @@ function Feed() {
         }
     }, []);
 
-    const refreshVideos = (options) => {
-        setTempVideos([]);
+    const refreshVideos = (loadingState, options) => {
+        const currOptions = Object.assign({}, options);
+        currOptions.offset = 0;
+        setFetchOptions((lastOptions) => ({ ...lastOptions, offset: 0 }));
+
         setVideos([]);
-        getVideos(isLoading, options);
+        getVideos(loadingState, currOptions);
     };
 
     useEffect(() => {
         // Initial fetch
         let mounted = true;
-        if (mounted) getVideos(isLoading, fetchOptions);
+        if (mounted) getVideos(false, fetchOptions);
 
         return () => {
             mounted = false;
         };
-    }, [fetchOptions, getVideos]);
-
-    useEffect(() => {
-        // Organize videos based on viewport
-        let mounted = true;
-
-        // Divide in chunks
-        // Returns object[]: [{v: "video1", v: "video2"}], [{v: "video1", v: "video2"}]
-        if (tempVideos.length >= 1 && mounted) {
-            tempVideos.reduce((all, one, index) => {
-                const ch = Math.floor(index / videoAmount);
-                all[ch] = [].concat(all[ch] || [], one);
-
-                setVideos(all);
-                return all;
-            }, []);
-        }
-
-        return () => {
-            mounted = false;
-        };
-    }, [videoAmount, tempVideos]);
+    }, []);
 
     useEffect(() => {
         // Fetch more videos if scrolled to the end of the page
         let mounted = true;
         const checkScrollPos = () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !isLoading && !endReached) {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 150 && !isLoading && !endReached) {
                 getVideos(isLoading, fetchOptions);
             }
         };
@@ -179,14 +166,12 @@ function Feed() {
                             <img src="https://img.icons8.com/color-glass/48/000000/lightning-bolt.png" alt="" />
                             <FeedTitle>Memes populares</FeedTitle>
                         </InnerTitleWrap>
-                        <RefreshBtn type="button" onClick={() => refreshVideos()}>
-                            Recarregar
+                        <RefreshBtn onClick={() => refreshVideos(isLoading, fetchOptions)}>
+                            <Spinner isActive={isLoading} size="1.1" />
                         </RefreshBtn>
                     </TitleWrap>
-                    {isLoading && <Spinner />}
-                    {videos && videos.length >= 1
-                        ? videos.map((rowVids, i) => <VideoWrapper videos={rowVids} videoAmount={videoAmount} key={i} />)
-                        : [...Array(5)].map((e, i) => <VideoWrapper key={i} videoAmount={videoAmount} />)}
+                    {videos && videos.length >= 1 ? <VideoWrapper videos={videos} /> : <VideoWrapper />}
+                    {isLoading && <Spinner isActive={isLoading} size="2" />}
                 </InnerWrap>
             </OuterWrap>
             {endReached && <Final />}

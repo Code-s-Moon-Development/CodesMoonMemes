@@ -1,32 +1,33 @@
 import styled from "styled-components";
 import Video from "./Video";
+import LazyLoad from "react-lazyload";
 
-const VidRow = styled.section`
-    margin: 1rem 2.5rem;
-`;
-
-const InnerVidRowWrap = styled.div`
-    margin: 0.5rem 0;
+const VideoGrid = styled.section`
+    margin: .5rem 0.2rem;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    flex-wrap: nowrap;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
     flex-direction: row;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 `;
 
-function VideoWrapper({ videos, videoAmount }) {
+function VideoWrapper({ videos }) {
     return (
-        <>
-            <VidRow>
-                <InnerVidRowWrap>
-                    {
-                        videos && videos.length >= 1
-                            ? videos.slice(0, videoAmount).map((video, i) => <Video key={i} url={video.url} />)
-                            : [...Array(videoAmount)].map((e, i) => <Video key={i} />) /* Insert placeholder videos */
-                    }
-                </InnerVidRowWrap>
-            </VidRow>
-        </>
+        <LazyLoad once>
+            <VideoGrid>
+                {
+                    videos && videos.length >= 1
+                        ? videos.map((video, i) => <Video key={i} url={video.url} />)
+                        : [...Array(25)].map((e, i) => <Video key={i} />) /* Insert placeholder videos */
+                }
+            </VideoGrid>
+        </LazyLoad>
     );
 }
 
