@@ -1,23 +1,16 @@
 {
   "files": {
-    "main.css": "/CodesMoonMemes/static/css/main.08220dd4.chunk.css",
-    "main.js": "/CodesMoonMemes/static/js/main.f2978d2a.chunk.js",
-    "main.js.map": "/CodesMoonMemes/static/js/main.f2978d2a.chunk.js.map",
-    "runtime-main.js": "/CodesMoonMemes/static/js/runtime-main.ba10be97.js",
-    "runtime-main.js.map": "/CodesMoonMemes/static/js/runtime-main.ba10be97.js.map",
-    "static/js/2.1175ae28.chunk.js": "/CodesMoonMemes/static/js/2.1175ae28.chunk.js",
-    "static/js/2.1175ae28.chunk.js.map": "/CodesMoonMemes/static/js/2.1175ae28.chunk.js.map",
+    "main.css": "/CodesMoonMemes/static/css/main.a96dfc57.css",
+    "main.js": "/CodesMoonMemes/static/js/main.0aa836b7.js",
+    "static/media/drgif.gif": "/CodesMoonMemes/static/media/drgif.e9a69d686d9204bd11a4.gif",
     "index.html": "/CodesMoonMemes/index.html",
-    "static/css/main.08220dd4.chunk.css.map": "/CodesMoonMemes/static/css/main.08220dd4.chunk.css.map",
-    "static/js/2.1175ae28.chunk.js.LICENSE.txt": "/CodesMoonMemes/static/js/2.1175ae28.chunk.js.LICENSE.txt",
-    "static/media/Close.0d2d4c2e.svg": "/CodesMoonMemes/static/media/Close.0d2d4c2e.svg",
-    "static/media/Upload.fdbc3f06.svg": "/CodesMoonMemes/static/media/Upload.fdbc3f06.svg",
-    "static/media/drgif.e9a69d68.gif": "/CodesMoonMemes/static/media/drgif.e9a69d68.gif"
+    "static/media/Upload.svg": "/CodesMoonMemes/static/media/Upload.fdbc3f067c92edb633d18859dbe124f7.svg",
+    "static/media/Close.svg": "/CodesMoonMemes/static/media/Close.0d2d4c2eea931ea10a7a65168bfa9ba8.svg",
+    "main.a96dfc57.css.map": "/CodesMoonMemes/static/css/main.a96dfc57.css.map",
+    "main.0aa836b7.js.map": "/CodesMoonMemes/static/js/main.0aa836b7.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.ba10be97.js",
-    "static/js/2.1175ae28.chunk.js",
-    "static/css/main.08220dd4.chunk.css",
-    "static/js/main.f2978d2a.chunk.js"
+    "static/css/main.a96dfc57.css",
+    "static/js/main.0aa836b7.js"
   ]
 }
