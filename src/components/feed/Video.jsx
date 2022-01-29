@@ -14,20 +14,15 @@ const placeholderBlink = keyframes`
 `;
 
 const Placeholder = styled.div`
-    margin: 0.2rem;
     width: 300px;
     height: 220px;
     min-height: 100%;
-    width: auto;
-    height: auto;
-    position: relative;
     z-index: 1;
     background: #222222;
     animation: ${placeholderBlink} 2s ease-in-out infinite;
 `;
 
 const VideoWrapper = styled.div`
-    margin: 0.2rem;
     width: 300px;
     height: 220px;
     overflow: hidden;

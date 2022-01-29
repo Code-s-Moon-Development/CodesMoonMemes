@@ -4,6 +4,7 @@ import LazyLoad from "react-lazyload";
 
 const VideoGrid = styled.section`
     margin: 0.5rem 0.2rem;
+    gap: 0.3rem;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
