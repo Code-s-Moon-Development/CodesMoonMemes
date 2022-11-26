@@ -2,6 +2,7 @@
     "name": "codes-moon-memes",
     "version": "1.0.0",
     "private": true,
+    "author": "Code's Moon Memes Community",
     "homepage": "https://code-s-moon-development.github.io/CodesMoonMemes/",
     "dependencies": {
         "@supabase/supabase-js": "^1.29.4",
@@ -46,5 +47,6 @@
     "devDependencies": {
         "gh-pages": "^3.2.3",
         "prettier": "^2.5.1"
-    }
+    },
+    "packageManager": "yarn@1.22.19"
 }
