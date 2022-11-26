@@ -1,3 +1,5 @@
+"use client"
+
 import { supabase } from "../../lib/supabaseClient";
 import { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
