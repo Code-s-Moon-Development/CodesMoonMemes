@@ -1,5 +1,3 @@
-import styled, { keyframes } from "styled-components";
-
 const stroke = keyframes`
 100% {
         stroke-dashoffset: 0
@@ -23,20 +21,7 @@ const fill = keyframes`
     }
 `;
 
-const Wrapper = styled.div`
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
 const Checkmark = styled.svg`
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: block;
-    stroke-width: 2;
-    stroke: #fff;
     stroke-miterlimit: 10;
     margin: 10% auto;
     box-shadow: inset 0px 0px 0px #7ac142;
@@ -62,14 +47,12 @@ const Path = styled.path`
 
 function Confirm() {
     return (
-        <>
-            <Wrapper>
-                <Checkmark xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <div className="h-full flex justify-center items-center">
+                <svg className="w-14 h-16 rounded-2xl block stroke-white stroke-2 mx-auto my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                     <Circle cx="26" cy="26" r="25" fill="none" />
                     <Path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                </Checkmark>
-            </Wrapper>
-        </>
+                </svg>
+            </div>
     );
 }
 

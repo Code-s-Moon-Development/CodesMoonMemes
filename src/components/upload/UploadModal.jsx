@@ -1,115 +1,16 @@
-import styled from "styled-components";
-import { ReactComponent as CloseSvg } from "../../assets/Close.svg";
-import { ReactComponent as UploadSvg } from "../../assets/Upload.svg";
+import CloseSvg from "../../../public/svgs/Close.svg";
+import UploadSvg from "../../../public/svgs/Upload.svg";
 
-const Backdrop = styled.div`
-    position: absolute;
-    overflow: hidden;
-    left: 0;
-    top: 0;
-    background: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-`;
-
-const FloatingModal = styled.div`
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    overflow: hidden;
-    background: #181818;
-    height: 80vh;
-    width: 70%;
-    padding: 2.5rem;
-    border-radius: 1rem;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    @media (max-width: 600px) {
-        width: 85%;
-        height: 85vh;
-        padding: 1rem;
-    }
-`;
-
-const ConfirmUpBtn = styled.button`
-    padding: 1rem 1.5rem;
-    color: #fff;
-    border-radius: 30px;
-    border: 0 transparent;
-    outline: 0 transparent;
-    cursor: pointer;
-`;
-
-const FileWrap = styled.div`
-    width: 100%;
-    heigth: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
-const FileDisplay = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    @media (max-width: 600px) {
-        gap: 1rem;
-    }
-`;
-
-const Filename = styled.h5`
-    font-size: calc(0.8rem + 0.5vw);
-`;
-
-const Filesize = styled.sup`
-    font-size: calc(0.8rem + 0.4vw);
-`;
-
-const AddFiles = styled.button`
-    margin: 0 0 1rem 0;
-    padding: 1rem 1.5rem;
-    font-weight: 700;
-    background: transparent;
-    color: #fff;
-    border-radius: 30px;
-    border: 0 transparent;
-    outline: 0 transparent;
-    transition: background 0.2s ease-in;
-    &:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-`;
-
-const UploadIcon = styled(UploadSvg)`
-    height: 45px;
-`;
-
-const CloseIcon = styled(CloseSvg)`
-    border-radius: 50%;
-    cursor: pointer;
-    &:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-    @media (max-width: 600px) {
-        width: 30px;
-    }
-`;
+import Image from "next/image";
+import classNames from "classnames";
 
 function UploadModal({ files, close, open, remove }) {
     return (
         <>
-            <Backdrop onClick={() => close()} />
-            <FloatingModal>
-                <FileWrap>
-                    <UploadIcon />
+            <div className="absolute overflow-hidden inset-0 bg-black/10 w-full h-full" onClick={close} />
+            <div className="absolute overflow-hidden rounded-2xl flex justify-center items-center flex-col p-2 md:p-4 z-10 w-[70%] h-5/6 bg-[#181818] left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2">
+                <div className="w-full h-full flex items-center justify-center flex-col">
+                    <Image src={UploadSvg} height={45} alt="" />
 
                     {!files || files.length === 0 ? (
                         <>
@@ -117,28 +18,33 @@ function UploadModal({ files, close, open, remove }) {
                         </>
                     ) : (
                         Object.values(files).map((file, i) => (
-                            <FileDisplay key={i}>
-                                <Filename>{file.name}</Filename>
-                                <Filesize>{file.size}</Filesize>
-                                <CloseIcon onClick={() => remove(file.file)} />
-                            </FileDisplay>
+                            <div className="w-full flex items-center justify-center gap-4 md:gap-8" key={i}>
+                                <h5 className="text-base">{file.name}</h5>
+                                <sup className="text-sm">{file.size}</sup>
+                                <button onClick={() => remove(file.file)}>
+                                    <Image src={CloseSvg} width={30} alt="" />
+                                </button>
+                            </div>
                         ))
                     )}
 
                     {files.length <= 5 ? (
-                        <AddFiles type="button" onClick={() => open()}>
+                        <button className="mb-4 transition-colors rounded-3xl px-4 py-6 font-bold text-white hover:bg-white/10" type="button" onClick={() => open()}>
                             Adicionar arquivo
-                        </AddFiles>
+                        </button>
                     ) : null}
-                </FileWrap>
-                <ConfirmUpBtn
+                </div>
+                <button
                     type="submit"
-                    style={files.length === 0 ? { background: "#222222", cursor: "default" } : { background: "#31be7c", cursor: "pointer" }}
-                    disabled={files.length === 0 ? true : false}
+                    className={classNames("px-6 py-4 rounded-3xl text-white outline-none border-none", {
+                        "bg-[#222222] cursor-default": files.length === 0,
+                        "bg-[#31be7c]": files.length > 0
+                    })}
+                    disabled={files.length === 0}
                 >
                     Upload
-                </ConfirmUpBtn>
-            </FloatingModal>
+                </button>
+            </div>
         </>
     );
 }

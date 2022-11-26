@@ -2,78 +2,13 @@
 
 import { supabase } from "../../lib/supabaseClient";
 import { useEffect, useState, useCallback } from "react";
-import styled from "styled-components";
+import Image from "next/image"
 
 import VideoWrapper from "./VideoWrapper";
 import Spinner from "./Spinner";
 import Final from "./Final";
-// import useMedia from "../../hooks/useMedia";
 
-const OuterWrap = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const InnerWrap = styled.div`
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
-const TitleWrap = styled.div`
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 2rem;
-    flex: 1;
-    width: 100%;
-    gap: 2rem;
-`;
-
-const InnerTitleWrap = styled.div`
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-`;
-
-const FeedTitle = styled.h1`
-    font-size: calc(1rem + 1vw);
-    margin-left: 0.8rem;
-    &:after {
-        content: "";
-        display: block;
-        margin-top: 1rem;
-        height: 2px;
-        width: calc(100px + 1vw);
-        background-color: #ffcf00;
-    }
-`;
-
-const RefreshBtn = styled.div`
-    padding: 0.5rem;
-    font-size: calc(0.7rem + 0.3vw);
-    margin: 0 0.6rem 0 0;
-    background: rgba(0, 0, 0, 0.2);
-    border: 0px transparent;
-    outline: 0px transparent;
-    font-weight: 600;
-    color: #d4d4d4;
-    border-radius: 8px;
-    box-shadow: 0 8px 32px 0 rgba(255, 207, 0, 0.05);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+import Lightning from "../../../public/lightning-bolt.png"
 
 function Feed() {
     const [isLoading, setIsLoading] = useState(false);
@@ -81,13 +16,7 @@ function Feed() {
     const [endReached, setEndReached] = useState(false);
 
     const [videos, setVideos] = useState([]);
-
-    // const videoAmount = useMedia(
-    //     ["(min-width: 2000px)", "(min-width: 1600px)", "(min-width: 1400px)", "(min-width: 968px)", "(min-width: 668px)", "(min-width: 0px)"],
-    //     [6, 5, 4, 3, 2, 1],
-    //     4
-    // );
-
+    
     const sanitizeVideos = (data) => {
         const tempData = [...new Set(data)]; // remove any possible duplicates
 
@@ -161,21 +90,21 @@ function Feed() {
 
     return (
         <>
-            <OuterWrap>
-                <InnerWrap>
-                    <TitleWrap>
-                        <InnerTitleWrap>
-                            <img src="https://img.icons8.com/color-glass/48/000000/lightning-bolt.png" alt="" />
-                            <FeedTitle>Memes populares</FeedTitle>
-                        </InnerTitleWrap>
-                        <RefreshBtn onClick={() => refreshVideos(isLoading, fetchOptions)}>
+            <div className="w-full h-full flex items-center justify-center">
+                <div className="w-fit flex justify-center items-center flex-col">
+                    <div className="flex flex-nowrap justify-between items-center my-8 flex-1 gap-8 w-full">
+                        <div className="flex flex-nowrap items-center">
+                            <Image src={Lightning} alt="" />
+                            <h1 className="text-lg ml-4 after:content-[''] after:block after:mt-4 after:h-0.5 after:w-28 after:bg-[#ffcf00]">Memes populares</h1>
+                        </div>
+                        <button className="p-2 mt-2 bg-black/20 border-none outline-none font-semibold text-[#d4d4d4] border border-white/20 flex justify-center items-center rounded-lg shadow-lg text-sm" onClick={() => refreshVideos(isLoading, fetchOptions)}>
                             <Spinner isActive={isLoading} size="1.1" />
-                        </RefreshBtn>
-                    </TitleWrap>
+                        </button>
+                    </div>
                     {videos && videos.length >= 1 ? <VideoWrapper videos={videos} /> : <VideoWrapper />}
                     {isLoading && <Spinner isActive={isLoading} size="2" />}
-                </InnerWrap>
-            </OuterWrap>
+                </div>
+            </div>
             {endReached && <Final />}
         </>
     );
