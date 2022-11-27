@@ -1,52 +1,13 @@
+"use client"
+import Image from "next/image";
+
 import { supabase } from "../../lib/supabaseClient";
 import React, { useState, useRef, useEffect } from "react";
-import { ReactComponent as UploadSvg } from "../../assets/Upload.svg";
-import styled from "styled-components";
+import UploadSvg from "../../../public/svgs/Upload.svg";
 
 import { fileTypes } from "./FileTypes";
 import UploadModal from "./UploadModal";
-import Confirm from "./Confirm";
-
-const UploadWrap = styled.section`
-    height: 20vh;
-    min-height: 8rem;
-    max-width: 1850px;
-    border: dashed 2px rgba(255, 207, 0, 0.3);
-    background: linear-gradient(35deg, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.3));
-    border-radius: 12px;
-    padding: 1.2rem 0 0 0;
-    margin: 0 auto 4rem auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), inset 0 -20px 35px rgba(255, 207, 0, 0.04);
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-`;
-
-const HeroUpload = styled.h4`
-    color: #d4d4d4;
-    font-weight: 600;
-    font-size: calc(0.7rem + 0.5vw);
-`;
-
-const UploadInput = styled.input`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    cursor: pointer;
-`;
-
-const UploadIcon = styled(UploadSvg)`
-    height: 45px;
-`;
+// import Confirm from "./Confirm";
 
 function Upload() {
     const [modalState, setModalState] = useState(false);
@@ -133,20 +94,20 @@ function Upload() {
 
     return (
         <form method="post" onSubmit={handleUpload}>
-            <UploadWrap>
+            <section className="max-w-7xl border-2 border-[rgba(255, 207, 0, 0.3)] bg-black/20 rounded-xl pt-5 mx-auto mb-16 flex justify-center items-center flex-col relative shadow-lg hover:bg-black/30">
                 {uploaded ? (
                     <React.Fragment onClick={() => setUploaded(false)}>
-                        <Confirm />
-                        <HeroUpload>Upload Completo.</HeroUpload>
+                        {/* <Confirm /> */}
+                        <h4 className="font-semibold text-base text-[#d4d4d4]">Upload Completo.</h4>
                     </React.Fragment>
                 ) : (
                     <>
-                        <UploadInput ref={input} type="file" accept="video/*" multiple onChange={handleFile}></UploadInput>
-                        <UploadIcon />
-                        <HeroUpload>Clique ou Arraste aqui para subir um video</HeroUpload>
+                        <input className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 h-full w-full opacity-0 cursor-pointer" ref={input} type="file" accept="video/*" multiple onChange={handleFile} />
+                        <Image src={UploadSvg} height={45} width={45} alt="" />
+                        <h4 className="font-semibold text-base text-[#d4d4d4]">Clique ou Arraste aqui para subir um video</h4>
                     </>
                 )}
-            </UploadWrap>
+            </section>
             {modalState ? <UploadModal files={files} close={closeModal} open={() => input.current.click()} remove={removeFile} /> : null}
         </form>
     );
