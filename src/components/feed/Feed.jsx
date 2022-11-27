@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
 import { supabase } from "../../lib/supabaseClient";
 import { useEffect, useState, useCallback } from "react";
-import Image from "next/image"
+import Image from "next/image";
 
 import VideoWrapper from "./VideoWrapper";
 import Spinner from "./Spinner";
 import Final from "./Final";
 
-import Lightning from "../../../public/lightning-bolt.png"
+import Lightning from "../../../public/lightning-bolt.png";
 
 function Feed() {
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ function Feed() {
     const [endReached, setEndReached] = useState(false);
 
     const [videos, setVideos] = useState([]);
-    
+
     const sanitizeVideos = (data) => {
         const tempData = [...new Set(data)]; // remove any possible duplicates
 
@@ -90,16 +90,21 @@ function Feed() {
 
     return (
         <>
-            <div className="w-full h-full flex items-center justify-center">
-                <div className="w-fit flex justify-center items-center flex-col">
-                    <div className="flex flex-nowrap justify-between items-center my-8 flex-1 gap-8 w-full">
+            <div className="mt-24 flex h-full w-full items-center justify-center">
+                <div className="flex w-fit flex-col items-center justify-center">
+                    <div className="my-8 flex w-full flex-1 flex-nowrap items-center justify-between gap-8">
                         <div className="flex flex-nowrap items-center">
                             <Image src={Lightning} alt="" />
-                            <h1 className="text-lg ml-4 after:content-[''] after:block after:mt-4 after:h-0.5 after:w-28 after:bg-[#ffcf00]">Memes populares</h1>
+                            <h1 className="ml-4 text-lg after:mt-4 after:block after:h-0.5 after:w-28 after:bg-[#ffcf00] after:content-['']">
+                                Memes populares
+                            </h1>
                         </div>
-                        <button className="p-2 mt-2 bg-black/20 border-none outline-none font-semibold text-[#d4d4d4] border border-white/20 flex justify-center items-center rounded-lg shadow-lg text-sm" onClick={() => refreshVideos(isLoading, fetchOptions)}>
+                        {/* <button
+                            className="mt-2 flex items-center justify-center rounded-lg border border-none border-white/20 bg-black/20 p-2 text-sm font-semibold text-[#d4d4d4] shadow-lg outline-none"
+                            onClick={() => refreshVideos(isLoading, fetchOptions)}
+                        >
                             <Spinner isActive={isLoading} size="1.1" />
-                        </button>
+                        </button> */}
                     </div>
                     {videos && videos.length >= 1 ? <VideoWrapper videos={videos} /> : <VideoWrapper />}
                     {isLoading && <Spinner isActive={isLoading} size="2" />}

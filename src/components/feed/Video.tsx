@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 
 import { env } from "../../env/client.mjs";
 
-function Video({ url }: { url?: string }) {
+export default function Video({ url }: { url?: string }) {
     const videoPlayer = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function Video({ url }: { url?: string }) {
                             disablePictureInPicture
                             controlsList="nofullscreen nodownload noremoteplayback"
                         >
-                            <source src={url + "#t=0.5"} type="video/mp4" />
+                            <source src={url} type="video/mp4" />
                         </video>
                     </div>
                 </div>
@@ -39,5 +39,3 @@ function Video({ url }: { url?: string }) {
         </div>
     );
 }
-
-export default Video;
