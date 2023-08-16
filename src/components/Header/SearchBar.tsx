@@ -1,7 +1,22 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import type { FormEvent } from "react";
+
+import { useSearch } from "../../context/search-context";
+
 export default function SearchBar() {
+    const router = useRouter();
+    const { setSearch } = useSearch();
+
+    const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        router.push("/");
+    };
+
     return (
-        <form className="flex items-center">
-            <label htmlFor="simple-search" className="sr-only">
+        <form className="flex items-center" onSubmit={handleSearchSubmit}>
+            <label htmlFor="search" className="sr-only">
                 Search
             </label>
             <div className="relative w-full">
@@ -16,10 +31,12 @@ export default function SearchBar() {
                 </div>
                 <input
                     type="text"
-                    id="simple-search"
-                    className="block w-full rounded-lg border border-white/10 bg-[#202020] p-2.5 pl-10 text-sm text-gray-900 caret-gray-400 focus:border-[#ffcf00] focus:ring-[#ffcf00] "
-                    placeholder="Search"
+                    id="search"
+                    className="block w-full rounded-lg border border-white/10 bg-[#202020] p-2.5 pl-10 text-sm text-gray-400 caret-gray-400 focus:border-[#ffcf00] focus:ring-[#ffcf00]"
+                    placeholder="Desabilitado temporariamente"
+                    disabled
                     required
+                    onChange={(e) => setSearch(e.target.value)}
                 />
             </div>
         </form>

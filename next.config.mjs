@@ -9,11 +9,41 @@ const config = {
     reactStrictMode: true,
     swcMinify: true,
     experimental: {
-        appDir: true
+        appDir: true,
     },
     i18n: {
-        locales: ["pt"],
-        defaultLocale: "pt",
+        locales: ["pt-BR"],
+        defaultLocale: "pt-BR",
+    },
+    async redirects() {
+        return [
+            {
+                source: "/:path+/",
+                destination: "/:path+",
+                permanent: true,
+            },
+        ];
+    },
+    async headers() {
+        return [
+            {
+                source: "/(.*)?", // Matches all pages
+                headers: [
+                    {
+                        key: "strict-transport-security",
+                        value: "max-age=63072000; includeSubdomains; preload",
+                    },
+                    {
+                        key: "x-content-type-options",
+                        value: "nosniff",
+                    },
+                    {
+                        key: "x-xss-protection",
+                        value: "1; mode=block",
+                    },
+                ],
+            },
+        ];
     },
 };
 
