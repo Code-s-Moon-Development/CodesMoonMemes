@@ -25,7 +25,7 @@ const getFileSize = (size: number) => {
     }
 };
 
-async function uploadFile(file: File, altText: string) {
+async function uploadFile(file: File, _altText: string) {
     if (file.size > FILE_SIZE_UPLOAD_LIMIT) {
         return { data: null, error: new Error(`Tamanho de arquivo máximo: ${getFileSize(FILE_SIZE_UPLOAD_LIMIT)}`) };
     }
@@ -34,33 +34,10 @@ async function uploadFile(file: File, altText: string) {
         return { data: null, error: new Error(`Arquivo de video inválido`) };
     }
 
-    const { data, error } = await supabase.storage
-        .from("cmemes")
-        .upload(file.name, file, {
-            cacheControl: "14400",
-            upsert: false,
-        })
-        .finally(() => {
-            const urlData = supabase.storage.from("cmemes").getPublicUrl(file.name);
-            const { publicUrl } = urlData.data;
-            // const test = supabase.storage.from("cmemes").list(undefined, {
-            //     limit: 1,
-            //     offset: 0,
-            //     search: file.name,
-            // });
-
-            async function uploadToDb(url: string) {
-                const { data, error } = await supabase.from("memes_data").insert({
-                    name: file.name,
-                    url: url,
-                    altText: altText.toString().length > 0 ? altText.toString() : "",
-                });
-                if (error) throw new Error(error?.message);
-                console.log(data);
-            }
-
-            uploadToDb(publicUrl);
-        });
+    const { data, error } = await supabase.storage.from("cmemes").upload(file.name, file, {
+        cacheControl: "14400",
+        upsert: false,
+    });
 
     return { data, error };
 }
@@ -72,7 +49,7 @@ export default function Upload() {
         Object.values(files).forEach(async (file) => {
             const { data, error } = await uploadFile(file, altText);
             if (error) throw new Error(error.message);
-            console.log(data.path);
+            console.log(data?.path);
         });
     };
 

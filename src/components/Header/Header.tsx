@@ -1,12 +1,9 @@
 import Image from "next/image";
-
-import Github from "../../../public/github.png";
 import Discord from "../../../public/svgs/discord.svg";
-
-import Logo from "./Logo";
-import SearchBar from "./SearchBar";
 import Upload from "../Upload/Upload";
 import Favorites from "./Favorites";
+import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
     return (
@@ -15,9 +12,7 @@ export default function Header() {
                 <div className="mr-2 md:flex-1">
                     <Logo />
                 </div>
-                <div className="hidden flex-1 md:block">
-                    <SearchBar />
-                </div>
+                <div className="hidden flex-1 md:block" />
                 <div className="flex-1 shrink">
                     <ul className="flex items-center justify-end gap-2 2xl:gap-4">
                         <li className="rounded-lg border border-white/10 py-1 px-4 hover:border-[#ffcc00]/50 hover:opacity-90">
@@ -39,16 +34,6 @@ export default function Header() {
                         <li>
                             <Favorites />
                         </li>
-                        {/* <li className="hidden md:block">
-                            <a
-                                href="https://github.com/Code-s-Moon-Development/CodesMoonMemes"
-                                target="_blank"
-                                rel="noreferrer"
-                                title="Repositório"
-                            >
-                                <Image src={Github} height={28} width={28} alt="Github Logo" />
-                            </a>
-                        </li> */}
                     </ul>
                 </div>
             </nav>

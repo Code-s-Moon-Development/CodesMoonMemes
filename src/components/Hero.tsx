@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-        <section className="w-full xs:w-96 md:w-[500px] flex flex-col justify-center px-4 py-8 text-left">
+        <section className="flex w-full flex-col justify-center px-4 py-8 text-left xs:w-96 md:mr-48 md:w-[500px] md:pl-16">
             <a
                 className="mb-4 flex w-fit items-center justify-center space-x-1 rounded-2xl border-2 border-solid border-white/10 bg-[#101010] py-1 pr-4 pl-1 text-white"
                 href="https://discord.gg/XpTWUy72Cq"

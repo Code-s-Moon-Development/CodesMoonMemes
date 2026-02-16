@@ -1,5 +1,4 @@
 "use client";
-import { supabase } from "../../lib/supabaseClient";
 import { useEffect, useCallback, useRef, useState } from "react";
 import { useVideo } from "../../context/video-context";
 import VideoLayout from "./Layout/VideoLayout";
@@ -15,13 +14,6 @@ interface IVideoProps {
     grow?: boolean;
     canPlay?: boolean;
 }
-
-const addView = async (videoId: string, currViewCount: number) => {
-    await supabase
-        .from("memes_data")
-        .update({ viewCount: currViewCount + 1 })
-        .eq("id", videoId);
-};
 
 export default function Video({ video, frameSize, grow, canPlay = true }: IVideoProps) {
     const { volume } = useVideo();
@@ -43,14 +35,9 @@ export default function Video({ video, frameSize, grow, canPlay = true }: IVideo
         if (!videoRef.current || !canPlay) return;
 
         playTimeoutRef.current = setTimeout(() => {
-            const playPromise = (videoRef.current as HTMLVideoElement).play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    addView(video.id, video.viewCount);
-                });
-            }
+            (videoRef.current as HTMLVideoElement).play();
         }, hoverTimeUntilPlay);
-    }, [canPlay, video.id, video.viewCount]);
+    }, [canPlay]);
 
     const handlePause = useCallback(() => {
         if (!playTimeoutRef.current || !videoRef.current) return;

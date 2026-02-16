@@ -3,18 +3,16 @@
 import type { ReactNode } from "react";
 import { forwardRef, useCallback, useDeferredValue, useState } from "react";
 import { useSearch } from "../../context/search-context";
-import getVideos from "../../lib/getVideos";
 
+import classNames from "classnames";
 import type { Components } from "react-virtuoso";
 import { defaultFetchOptions } from "../../config";
 import { VideoProvider } from "../../context/video-context";
 import type { IFetchOptionsProps, IVideoParams } from "../../types";
-import classNames from "classnames";
 
 import { VirtuosoGrid } from "react-virtuoso";
 import Placeholder from "../Video/Placeholder";
 import Video from "../Video/Video";
-import VideoArraySkeleton from "../VideoArraySkeleton";
 import Footer from "./Footer";
 
 interface IFeedProps {
@@ -22,10 +20,20 @@ interface IFeedProps {
     children: ReactNode;
 }
 
-const loadMore = async (options: IFetchOptionsProps, search?: string) => {
-    const { videos: data, endReached: ended } = await getVideos(options, search);
-    return { data, ended };
-};
+async function loadMore(options: IFetchOptionsProps, search?: string): Promise<{ data: IVideoParams[]; ended: boolean }> {
+    const params = new URLSearchParams({
+        offset: String(options.offset),
+        limit: String(options.limit),
+        orderColumn: options.order.column,
+        orderAsc: String(options.order.options?.ascending ?? false),
+        ...(search ? { search } : {}),
+    });
+    const res = await fetch(`/api/videos?${params}`);
+    console.log(res);
+    if (!res.ok) throw new Error("Failed to load videos");
+    const { videos, endReached } = (await res.json()) as { videos: IVideoParams[]; endReached: boolean };
+    return { data: videos, ended: endReached };
+}
 
 // eslint-disable-next-line react/display-name
 const Scroller: Components["Scroller"] = forwardRef(({ style, ...props }, ref) => {

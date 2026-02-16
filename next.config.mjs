@@ -6,15 +6,6 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
-    reactStrictMode: true,
-    swcMinify: true,
-    experimental: {
-        appDir: true,
-    },
-    i18n: {
-        locales: ["pt-BR"],
-        defaultLocale: "pt-BR",
-    },
     async redirects() {
         return [
             {

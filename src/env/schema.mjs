@@ -7,6 +7,8 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
     NODE_ENV: z.enum(["development", "production"]),
+    /** Server-only: bypasses RLS for storage list. Get from Supabase Dashboard > Settings > API. */
+    SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
 });
 
 /**
